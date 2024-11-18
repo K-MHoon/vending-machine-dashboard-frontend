@@ -24,12 +24,12 @@ const useCustomLogin = () => {
     };
 
     const saveAsCookie = (data) => {
-        setCookie("member", JSON.stringify(data), 1);
+        setCookie("auth", JSON.stringify(data), 1);
         setLoginState(data);
     };
 
     const doLogout = () => {
-        removeCookie("member");
+        removeCookie("auth");
         resetState();
     };
 
@@ -38,11 +38,11 @@ const useCustomLogin = () => {
     };
 
     const moveToLogin = () => {
-        navigate({ pathname: "/member/login" }, { replace: true });
+        navigate({ pathname: "/auth/login" }, { replace: true });
     };
 
     const moveToLoginReturn = () => {
-        return <Navigate replace to="/member/login" />;
+        return <Navigate replace to="/auth/login" />;
     };
 
     const exceptionHandler = (ex) => {
@@ -54,13 +54,13 @@ const useCustomLogin = () => {
 
         if (errorMsg === "REQUIRE_LOGIN") {
             alert("로그인 해야 합니다.");
-            navigate({ pathname: "/member/login", search: errorStr });
+            navigate({ pathname: "/auth/login", search: errorStr });
             return;
         }
 
         if (errorMsg === "ERROR_ACCESS_DENIED") {
             alert("해당 메뉴를 사용할 수 있는 권한이 없습니다.");
-            navigate({ pathname: "/member/login", search: errorStr });
+            navigate({ pathname: "/auth/login", search: errorStr });
             return;
         }
     };
